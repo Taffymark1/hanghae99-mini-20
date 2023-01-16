@@ -24,14 +24,14 @@
     <header>
         <div class="header">
             <div class="log-out">
-                {% if session['sid']  %}
-            <h3>{{ session['sid']}}님 안녕하세요!</h3>
-                {% endif %}
                 <button type="button" class="btn btn-info" onclick="location.href=`/logout`">로그아웃</button>
+                {% if session['sid']  %}
+                <h3>{{ session['sid']}}님 안녕하세요!</h3>
+                {% endif %}
             </div>
             <div style="clear:both;"></div>
             <div class="main_title">
-                <h5>메인 타이틀이 여기?</h5>
+                <h1>메인 타이틀이 여기?</h1>
             </div>
             <div style="clear:both;"></div>
             <div class="write">
@@ -55,7 +55,7 @@
             let url = rows[i]["userurl"];
             let num = i;
 
-            let temp_html = `<div class="row row-cols-1 row-cols-md-3 g-3" id="cards-box">
+            let temp_html = `
             <div class="col">
                 <div class="card h-100">
                     <img src=${url} class="card-img-top">
@@ -78,8 +78,8 @@
                 </div>
             </div>
         </div>
-    </div>`;
-            $("#mycards").append(temp_html);
+        `;
+            $("#cards-box").append(temp_html);
       }
     },
   });
@@ -101,7 +101,9 @@ function like_post (num) {
 
 
     <div class="mycards" id="mycards">
+        <div class="row row-cols-1 row-cols-md-3 g-3" id="cards-box">
 
+        </div>
     </div>
 </body>
 </html>
