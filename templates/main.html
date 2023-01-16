@@ -15,7 +15,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css/fanclub.css">
-    <script src="../javascript/fanclub.js" defer></script>
+
 
     <title>갤러리아</title>
 
@@ -24,8 +24,10 @@
     <header>
         <div class="header">
             <div class="log-out">
-                aaa 님 안녕하세요!
-                <button type="button" class="btn btn-info" onclick="location.href=`/`">로그아웃</button>
+                {% if session['sid']  %}
+            <h3>{{ session['sid']}}님 안녕하세요!</h3>
+                {% endif %}
+                <button type="button" class="btn btn-info" onclick="location.href=`/logout`">로그아웃</button>
             </div>
             <div style="clear:both;"></div>
             <div class="main_title">
@@ -38,19 +40,31 @@
         </div>
     </header>
 
-    <div class="mycards">
-        <div class="row row-cols-1 row-cols-md-3 g-3" id="cards-box">
+    <script>
+    //function showPost() {
+  $.ajax({
+    type: 'GET',
+    url: '/content',
+    data: {},
+    success: function (response) {
+        console.log('##', response)
+          let rows = response['gallery'];
+          for (let i = 0; i < rows.length; i++) {
+            let name = rows[i]["userid"];
+            let comment = rows[i]["comment"];
+            let url = rows[i]["userurl"];
+
+            let temp_html = `<div class="row row-cols-1 row-cols-md-3 g-3" id="cards-box">
             <div class="col">
                 <div class="card h-100">
-                    <img src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg"
-                         class="card-img-top">
+                    <img src=${url} class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">예시 타이틀</h5>
-                        <p class="mycomment">예시 내용물</p>
+                        <h5 class="card-title">${name}</h5>
+                        <p class="mycomment">${comment}</p>
                         <div class="see_more">
-                            <button type="button" class="btn btn-info" onclick="location.href=``">자세히 보기</button>
+                            <button type="button" class="btn btn-info" onclick="">자세히 보기</button>
                             <div class="heart_count"> 1 </div>
-                            <div class="heart" onclick="location.href=``">
+                            <div class="heart" onclick="">
                                 <span class="material-symbols-outlined" onclick="">
                                     favorite
                                 </span>
@@ -60,6 +74,19 @@
                 </div>
             </div>
         </div>
+    </div>`;
+            $("#mycards").append(temp_html);
+      }
+    },
+  });
+// }
+</script>
+
+
+
+
+    <div class="mycards" id="mycards">
+
     </div>
 </body>
 </html>
