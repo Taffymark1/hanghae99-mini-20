@@ -50,6 +50,11 @@ def logout():
 def main():
     return render_template('main.html')
 
+#main에서detail
+@app.route('/detail', methods=['GET'])
+def detail():
+    return render_template('detail.html')
+
 
 #commentlist
 @app.route('/list', methods=['GET'])
