@@ -57,16 +57,10 @@ def detail():
 
 
 #commentlist
-@app.route('/list', methods=['GET'])
-def listmain():
-    return render_template('list.html')
-
-#commentlist
 @app.route('/content', methods=['GET'])
 def listview():
     exlist = list(db.gallery.find({},{'_id':False}))
     return jsonify({'gallery': exlist})
-
 
 #photoinsert
 @app.route('/fanclub', methods=['GET','POST'])
@@ -78,7 +72,7 @@ def insert():
 #db 넣기
     if userurl is not None:
         db.gallery.insert_one({'userid':userid,'userurl':userurl,'comment':comment, 'num': 0})
-        return render_template('list.html')
+        return render_template('main.html')
     else:
         return render_template('fanclub.html')
 
@@ -89,14 +83,6 @@ def web_gallery_like_post():
    db.gallery.update_one({'num': int(like_receive)}, {'$set': {'num': int(like_receive)+1}})
    return jsonify({'msg': 'like +1'})
 
-#comment delete
-@app.route('/fanclub/delete', methods=['GET','POST'])
-def delete():
-    deleteid = request.form.get('id')
-    # deletecomment = request.form.get('comment')
-
-    db.newjeanscomment.delete_one({'name':deleteid})
-    db.newjeanscomment.delete_one({'id':deleteid})
 
 #signin
 @app.route('/signin', methods=['GET','POST'])
@@ -115,6 +101,12 @@ def signin():
         return render_template('login.html')
     else:
         return render_template('signin.html')
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
