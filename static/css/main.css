@@ -41,14 +41,23 @@
     max-width: 1200px;
 }
 
+.mycomment {
+    margin-bottom: 10px;
+}
+
+.see_more {
+    position: absolute;
+
+}
+
 .heart {
     float: right;
-    margin: 0 5px 0 0;
+    margin: 5px 5px 0 170px;
 }
 
 .heart_count {
     float: right;
-    margin: 0 0 0 5px;
+    margin: 7px 0 0 5px;
 }
 
 .card {
@@ -66,3 +75,12 @@
 .log-out {
     color: white;
 }
+
+.card-img-top {
+    height: 400px;
+}
+
+.g-3, .gy-3 {
+    --bs-gutter-y: 2rem;
+}
+
