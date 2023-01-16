@@ -36,7 +36,7 @@ def login():
         return render_template('login.html')
     else:
         session['sid'] = request.form['id']
-        return redirect('/fanclub')
+        return redirect('/main')
 
 
 #logout
