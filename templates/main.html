@@ -41,7 +41,7 @@
     </header>
 
     <script>
-    //function showPost() {
+    function showPost() {
   $.ajax({
     type: 'GET',
     url: '/content',
@@ -53,6 +53,7 @@
             let name = rows[i]["userid"];
             let comment = rows[i]["comment"];
             let url = rows[i]["userurl"];
+            let num = i;
 
             let temp_html = `<div class="row row-cols-1 row-cols-md-3 g-3" id="cards-box">
             <div class="col">
@@ -61,6 +62,7 @@
                     <div class="card-body">
                         <h5 class="card-title">${name}</h5>
                         <p class="mycomment">${comment}</p>
+                        <button onclick = 'like_post'>❤️</button><a>${num}</a>
                         <div class="see_more">
 
                             <button type="button" class="btn btn-info" onclick="location.href='/detail'">자세히 보기</button>
@@ -81,7 +83,18 @@
       }
     },
   });
-// }
+}
+function like_post (num) {
+    $.ajax({
+        type: 'POST',
+        url: '/fanclub/like',
+        data: {'like_give': num},
+        success: function (response) {
+            alert(response['msg'])
+            window.location.reload()
+        }
+    })
+}
 </script>
 
 
