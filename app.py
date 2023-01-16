@@ -68,14 +68,20 @@ def insert():
     userid = session['sid']
     userurl = request.form.get('userurl')
     comment = request.form.get('comment')
-
+    exlist = list(db.gallery.find({}, {'_id': False}))
+    count = len(exlist) + 1
 #db 넣기
     if userurl is not None:
-        db.gallery.insert_one({'userid':userid,'userurl':userurl,'comment':comment, 'num': 0})
+        db.gallery.insert_one({'userid':userid,'userurl':userurl,'comment':comment, 'num': 0, 'id_num': int(count)})
         return render_template('main.html')
     else:
         return render_template('fanclub.html')
 
+@app.route("/fanclub/delete", methods=["POST"])
+def post_deleting():
+    id_num_receive = request.form['id_num_give']
+    db.gallery.delete_one({'id_num': int(id_num_receive)})
+    return jsonify({'msg': '삭제 완료'})
 
 @app.route('/fanclub/like', methods=['POST'])
 def web_gallery_like_post():

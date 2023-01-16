@@ -54,7 +54,7 @@
             let comment = rows[i]["comment"];
             let url = rows[i]["userurl"];
             let num = rows[i]['num'];
-
+            let id_num = rows[i]['id_num'];
             let temp_html = `
             <div class="col">
                 <div class="card h-100">
@@ -67,6 +67,7 @@
                             <button type="button" class="btn btn-info" onclick="location.href='/detail'">자세히 보기</button>
                             <div class="heart_count">${num}</div>
                             <button class="heart" onclick="like_post(${num})">❤️</button>
+                            <button class="heart" onclick="deleting_post(${id_num})">삭제</button>
                             </div>
                         </div>
                     </div>
@@ -90,6 +91,18 @@ function like_post (num) {
         }
     })
 }
+function deleting_post (id_num) {
+    $.ajax({
+        type: 'POST',
+        url: '/fanclub/delete',
+        data: {id_num_give: id_num},
+        success: function (response) {
+            alert(response['msg'])
+            window.location.reload()
+        }
+    })
+}
+
 
     $(document).ready(function () {
         showPost();
