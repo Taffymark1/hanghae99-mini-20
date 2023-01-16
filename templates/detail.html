@@ -13,7 +13,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/css/fanclub.css">
-    <link rel="stylesheet" href="../static/css/welcome.css">
+    <link rel="stylesheet" href="../static/css/detail.css">
     <script src="../javascript/fanclub.js" defer></script>
 
     <title>Detail</title>
@@ -29,27 +29,73 @@
 <div class="header"></div>
 
 
-<form action="/fanclub" method="post">
+<script>
+    function showPost() {
+  $.ajax({
+    type: 'GET',
+    url: '/content',
+    data: {},
+    success: function (response) {
+        console.log('##', response)
+          let rows = response['gallery'];
+
+            let name = rows[0]["userid"];
+            let comment = rows[0]["comment"];
+            let url = rows[0]["userurl"];
+            let num = rows[0]['num'];
+
+            let temp_html = `
+            <form action="/fanclub" method="post">
     <div class="pictures_left">
         <div class="form-floating mb-3" id="floatingInput" name="username">
-            <input type="image" id="image" name="picture_left" value="image">
+            <img src=${url} class="card-img-top">
+        </div>
+
+        <div class="form-floating mb-3" id="floatingInput" name="username">
+
+            <h3>${name}</h3>
+
         </div>
 
         <div class="contents_right">
                 <textarea class="form-control" placeholder="Insert Image URL Here" id="floatingTextarea"
                           name="comment"></textarea>
-            <label for="floatingTextarea" id="comment">comment</label>
+            <label for="floatingTextarea" id="comment">${comment}</label>
         </div>
         <div>
             <input type="url" id="url" name="userurl" value="url">
-            <label for="url" id="url_l">Image url</label>
+            <label for="url" id="url_l">${url}</label>
         </div>
         <div class="postButton">
-            <button type="submit" class="btn btn-dark" onclick="add_comment()">submmit</button>
-            <button type="button" class="btn btn-dark" id="btn_go" onclick="location.href='/list'">list</button>
+            <button type="submit" class="btn btn-dark" onclick="add_comment()">수정하기</button>
+            <button type="button" class="btn btn-dark" id="btn_go" onclick="location.href='/list'">삭제하기</button>
         </div>
     </div>
 </form>
+        `;
+            $("#cards-box").append(temp_html);
+
+    },
+  });
+}
+function like_post (num) {
+    $.ajax({
+        type: 'POST',
+        url: '/fanclub/like',
+        data: {'like_give': num},
+        success: function (response) {
+            alert(response['msg'])
+            window.location.reload()
+        }
+    })
+}
+
+    $(document).ready(function () {
+        showPost();
+    })
+</script>
+
+
 
 </div>
 
