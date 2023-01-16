@@ -1,3 +1,4 @@
-
+*.pyo
+__pycache__
 *.iml
 *.xml
