@@ -66,12 +66,13 @@ def listview():
 #photoinsert
 @app.route('/fanclub', methods=['GET','POST'])
 def insert():
-    photo = request.form.get('photo')
+    userid = session['sid']
+    userurl = request.form.get('userurl')
     comment = request.form.get('comment')
-
+    print(userid)
 #db 넣기
-    if photo is not None:
-        db.gallery.insert_one({'photo':photo, 'comment':comment})
+    if userurl is not None:
+        db.gallery.insert_one({'userid':userid,'userurl':userurl,'comment':comment})
         return render_template('list.html')
     else:
         return render_template('fanclub.html')

@@ -19,10 +19,12 @@
         console.log('##', response)
           let rows = response['gallery'];
           for (let i = 0; i < rows.length; i++) {
-            let photo = rows[i]["photo"];
+            let name = rows[i]["userid"];
             let comment = rows[i]["comment"];
+            let url = rows[i]["userurl"];
             let temp_html = `<tr>
-                                <td >${photo}</td>
+                                <td >${name}</td>
+                                <td><img src=${url}></td>
                                 <td >${comment}</td>
                             </tr>`;
             $("#listpower").append(temp_html);
