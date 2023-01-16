@@ -113,7 +113,7 @@ def gallery_one_get(userid):
 @app.route("/gallery/modify/<int:id>", methods=["PUT"])
 def modify_gallery(userid):
     # id가 유효한지 확인
-    exist = db.gallery.find({'userid': int(userid)}, {'_id': False})
+    exist = db.gallery.find({'userid': userid}, {'_id': False})
     # 유효하지 않는 경우
     if len(list(exist)) == 0 :
         return jsonify({'msg':'작성자만 수정할 수 있습니다.'})
