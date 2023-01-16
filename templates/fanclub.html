@@ -31,26 +31,24 @@
 
 <form action="/fanclub" method="post">
     <div class="myPost">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" name="name">
-            <label for="floatingInput" id="name">닉네임</label>
+        <div class="form-floating mb-3" id="floatingInput">
+            {% if session['sid']  %}
+            <h3>{{ session['sid']}}</h3>
+            {% endif %}
         </div>
 
         <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
                           name="comment"></textarea>
-
-            <label for="floatingTextarea" id="comment">응원 댓글</label>
+            <label for="floatingTextarea" id="comment">comment</label>
+        </div>
+        <div>
+            <input type="url" id="url" name="url" value="url">
+            <label for="url" id="url_l">url</label>
         </div>
         <div class="postButton">
-            <input type="file" id="file-input">
-            <button id="upload-button">Upload</button>
-
-
-            <button type="submit" class="btn btn-dark" onclick="add_comment()">응원 남기기</button>
-
-            <button type="button" class="btn btn-dark" id="btn_go" onclick="location.href='/list'">응원 보러가기</button>
-
+            <button type="submit" class="btn btn-dark" onclick="add_comment()">submmit</button>
+            <button type="button" class="btn btn-dark" id="btn_go" onclick="location.href='/list'">list</button>
         </div>
     </div>
 </form>

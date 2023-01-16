@@ -2,7 +2,6 @@ from flask import *
 from pymongo import MongoClient
 import certifi
 
-
 #mongodb
 ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.az4tite.mongodb.net/Clustor0?retryWrites=true&w=majority', tlsCAFile=ca)
@@ -36,7 +35,14 @@ def login():
     elif userdbpw is None:
         return render_template('login.html')
     else:
+        session['sid'] = request.form['id']
         return redirect('/fanclub')
+
+#logout
+@app.route('/logout')
+def logout():
+    session.pop('id',None)
+    return render_template('login.html')
 
 #commentlist
 @app.route('/list', methods=['GET'])
@@ -46,23 +52,24 @@ def listmain():
 #commentlist
 @app.route('/content', methods=['GET'])
 def listview():
-    exlist = list(db.newjeanscomment.find({},{'_id':False}))
-    return jsonify({'newjeanslist': exlist})
+    exlist = list(db.gallery.find({},{'_id':False}))
+    return jsonify({'gallery': exlist})
 
 
-
-#comentmain
+#photoinsert
 @app.route('/fanclub', methods=['GET','POST'])
 def insert():
-    name = request.form.get('name')
+    photo = request.form.get('photo')
     comment = request.form.get('comment')
 
 #db 넣기
-    if name is not None:
-        db.newjeanscomment.insert_one({'name':name, 'comment':comment, 'num': 0})
-        return render_template('fanclub.html')
+    if photo is not None:
+        db.gallery.insert_one({'photo':photo, 'comment':comment})
+        return render_template('list.html')
     else:
         return render_template('fanclub.html')
+
+
 @app.route('/fanclub/like', methods=['POST'])
 def web_gallery_like_post():
    like_receive = request.form['like_give']
@@ -91,7 +98,7 @@ def signin():
 
 #db 집어넣기
     if userid is not None:
-        db.newjeans.insert_one({'ID': userid, 'PW': userpw, 'NAME': username, 'HP': userhp})
+        db.galleryhost.insert_one({'ID': userid, 'PW': userpw, 'NAME': username, 'HP': userhp})
         return render_template('login.html')
     else:
         return render_template('signin.html')
