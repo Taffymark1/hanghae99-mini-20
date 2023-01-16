@@ -53,7 +53,7 @@
             let name = rows[i]["userid"];
             let comment = rows[i]["comment"];
             let url = rows[i]["userurl"];
-            let num = i;
+            let num = rows[i]['num'];
 
             let temp_html = `
             <div class="col">
@@ -62,14 +62,12 @@
                     <div class="card-body">
                         <h5 class="card-title">${name}</h5>
                         <p class="mycomment">${comment}</p>
-                        <button onclick = 'like_post'>❤️</button><a>${num}</a>
                         <div class="see_more">
 
                             <button type="button" class="btn btn-info" onclick="location.href='/detail'">자세히 보기</button>
-                            <div class="heart_count"> 1 </div>
-                            <div class="heart" onclick="">
-
-                                <span class="material-symbols-outlined" onclick="">
+                            <div class="heart_count">${num}</div>
+                            <button class="heart" onclick="like_post(${num})">❤️</button>
+                                <span class="material-symbols-outlined">
                                     favorite
                                 </span>
                             </div>
@@ -95,6 +93,10 @@ function like_post (num) {
         }
     })
 }
+
+    $(document).ready(function () {
+        showPost();
+    })
 </script>
 
 
