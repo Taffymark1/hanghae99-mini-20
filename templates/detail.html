@@ -28,39 +28,61 @@
 
 <div class="header"></div>
 
+<div id="cards-box"></div>
 
-<form action="/fanclub" method="post">
-    <div class="pictures_left">
-        <div class="form-floating mb-3" id="floatingInput" name="username">
-            <input type="image" id="image" name="picture_left" value="image">
-        </div>
-
-        <div class="contents_right">
-                <textarea class="form-control" placeholder="Insert Image URL Here" id="floatingTextarea"
-                          name="comment"></textarea>
-            <label for="floatingTextarea" id="comment">comment</label>
-        </div>
-        <div>
-            <input type="url" id="url" name="userurl" value="url">
-            <label for="url" id="url_l">Image url</label>
-        </div>
-        <div class="postButton">
-            <button type="submit" class="btn btn-dark" onclick="add_comment()">submmit</button>
-            <button type="button" class="btn btn-dark" id="btn_go" onclick="location.href='/list'">list</button>
-        </div>
-    </div>
-</form>
-
-</div>
-
-</div>
 </body>
 <script>
-    setTimeout(function () {
-        const img1 = document.getElementById('img1')
-        img1.style.display = 'none'
-    }, 3000)
+    function showPost() {
+        $.ajax({
+            type: 'GET',
+            url: '/content',
+            data: {},
+            success: function (response) {
+                console.log('##', response)
+                let rows = response['gallery'];
+                for (let i = 0; i < rows.length; i++) {
+                    let name = rows[i]["userid"];
+                    let comment = rows[i]["comment"];
+                    let url = rows[i]["userurl"];
+                    let num = rows[i]['num'];
+                    let temp_html =
+                        `
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src=${url} class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">${name}</h5>
+                                    <p class="mycomment">${comment}</p>
+                                    <div class="see_more">
+                                        <div class="heart_count">${num}</div>
+                                        <button class="heart" onclick="like_post(${num})">❤️</button>
+                                        </div>
+                                    </div>
+                                </div>
+                          </div>
+                        `;
+                    $("#cards-box").append(temp_html);
+                }
+            },
+        });
+    }
 
+    function like_post(num) {
+        $.ajax({
+            type: 'POST',
+            url: '/fanclub/like',
+            data: {'like_give': num},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        })
+    }
+
+
+    $(document).ready(function () {
+        showPost();
 </script>
+
 
 </html>
