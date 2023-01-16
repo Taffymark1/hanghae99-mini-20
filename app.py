@@ -59,10 +59,15 @@ def insert():
 
 #db 넣기
     if name is not None:
-        db.newjeanscomment.insert_one({'name':name, 'comment':comment})
+        db.newjeanscomment.insert_one({'name':name, 'comment':comment, 'num': 0})
         return render_template('fanclub.html')
     else:
         return render_template('fanclub.html')
+@app.route('/fanclub/like', methods=['POST'])
+def web_gallery_like_post():
+   like_receive = request.form['like_give']
+   db.homework.update_one({'num': int(like_receive)}, {'$set': {'num': int(like_receive)+1}})
+   return jsonify({'msg': 'like +1'})
 
 #comment delete
 @app.route('/fanclub/delete', methods=['GET','POST'])
