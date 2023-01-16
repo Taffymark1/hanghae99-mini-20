@@ -1,7 +1,92 @@
-echo "# hanghae99-mini-20" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/Taffymark1/hanghae99-mini-20.git
-git push -u origin main
+# Mini Project Team20
+
+# 1. Team20 Member
+
+## - 박지현 Team20 Leader, Front
+
+- 박성민 Back
+
+- 곽승민 Back
+
+- 정붕기 Back
+
+- 양진규 Front
+
+# 2. Project Description
+
+## - Main Theme : ‘Gallery’
+
+- This is a photo share gallery website. 
+
+- Anyone can share different kinds of photos with anybody.
+
+- The User can post photos and tell the story or description.
+
+- Each user can comment to another postings.
+
+# 3. Project Wireframe
+
+![Login Page](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3d573bc0-6937-4ca8-a6b1-d4b4acb138c8/login.jpg)
+
+Login Page
+
+![Main Page](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34993ba0-0171-4eea-963a-9040fd33480c/list.jpg)
+
+Main Page
+
+![Detail Page&Write](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b3000082-4bf8-4a26-a994-c9c17999442f/detail.jpg)
+
+Detail Page&Write
+
+![Sign In](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/395dd579-2add-4264-adfa-dcb50dd65aad/singin.jpg)
+
+Sign In
+
+# 4. Project Github
+
+[https://github.com/Taffymark1/hanghae99-mini-20](https://github.com/Taffymark1/hanghae99-mini-20)
+
+# 5. 기능별 역할 분담
+
+## Front Design & Functions
+
+## -박지현(Main page)
+
+-양진규(Sign in/List/Detail&write)
+
+## Back Function
+
+## -정붕기(Login, Logout, Sign In, Using Session)
+
+-박성민(Detail Page … 취소됨)
+
+-곽승민(Main Page - 좋아요+1, 기능)
+
+# 6. Application Programming Interface 
+
+    API 기능별 Methods & URL
+
+- 기능 : 회원가입
+    
+    methods : POST
+    
+    URL : /fanclub/signin
+    
+- 기능 : 좋아요
+    
+    methods : POST
+    
+    URL : `/fanclub/like`
+    
+- 기능 : 게시글 작성
+    
+    methods :
+    
+    URL : 
+    
+
+# 7. ``
+
+# 8. etc
+- 23:00, 기술 멘토님 방문
+- 16:00, 코드 리뷰 → 백엔드
