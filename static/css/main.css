@@ -1,0 +1,51 @@
+.header{
+    width: 100%;
+    height: 250px;
+    background: url(https://img.etnews.com/news/article/2022/10/30/article_30091212839104.jpg) no-repeat center;
+    background-size: auto;
+
+    background-color: antiquewhite;
+}
+
+.log-out {
+    position: static;
+    padding: 10px;
+    float: right;
+}
+
+.main_title {
+    width: 100%;
+    height: 150px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.write {
+    padding: 10px;
+    position: relative;
+    float: right;
+}
+
+.mycards {
+    margin: 20px auto 50px auto;
+    width: 95%;
+    max-width: 1200px;
+}
+
+.heart {
+    float: right;
+    margin: 0 5px 0 0;
+}
+
+.heart_count {
+    float: right;
+    margin: 0 0 0 5px;
+}
+
+.card {
+    box-shadow: 5px 5px 0 0 white;
+}
+

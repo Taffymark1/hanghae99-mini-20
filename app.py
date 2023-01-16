@@ -38,11 +38,18 @@ def login():
         session['sid'] = request.form['id']
         return redirect('/fanclub')
 
+
 #logout
 @app.route('/logout')
 def logout():
     session.pop('id',None)
     return render_template('login.html')
+
+#main페이지 이동
+@app.route('/main', methods=['GET'])
+def main():
+    return render_template('main.html')
+
 
 #commentlist
 @app.route('/list', methods=['GET'])
