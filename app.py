@@ -77,7 +77,7 @@ def insert():
 
 #db 넣기
     if userurl is not None:
-        db.gallery.insert_one({'userid':userid,'userurl':userurl,'comment':comment})
+        db.gallery.insert_one({'userid':userid,'userurl':userurl,'comment':comment, 'num': 0})
         return render_template('list.html')
     else:
         return render_template('fanclub.html')
