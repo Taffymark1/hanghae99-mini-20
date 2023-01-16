@@ -102,7 +102,47 @@ def signin():
     else:
         return render_template('signin.html')
 
+# 특정 gallery 조회
+@app.route("/gallery/detail", methods=["GET"])
+def gallery_one_get(userid):
+    one_gallery = list(db.gallery.find({'id': userid }, {'_id': False}))
 
+    return jsonify({'gallery': one_gallery})
+
+# DetailPage 수정
+@app.route("/gallery/modify/<int:id>", methods=["PUT"])
+def modify_gallery(userid):
+    # id가 유효한지 확인
+    exist = db.gallery.find({'userid': int(userid)}, {'_id': False})
+    # 유효하지 않는 경우
+    if len(list(exist)) == 0 :
+        return jsonify({'msg':'작성자만 수정할 수 있습니다.'})
+    # id가 유효한 경우
+    else:
+        userurl = request.form['url']
+        comment = request.form['comment']
+
+        new_doc = {
+            'userurl': userurl,
+            'comment': comment
+        }
+        db.gallery.update_one({'userid': userid }, {'$set': new_doc })
+
+    return jsonify({'msg': '수정 완료!'})
+
+# DetailPage 삭제
+@app.route("/gallery/delete/<int:id>", methods=["DELETE"])
+def delete_gallery(userid):
+    # id가 유효한지 확인
+    exist_userid = list(db.gallery.find({'id': userid}, {'_id': False}))
+    # 유효하지 않는 경우
+    if len(list(exist_userid)) == 0:
+        return jsonify({'msg': '작성자만 삭제할 수 있습니다.'})
+    # id가 유효한 경우
+    # DB 삭제
+    db.gallery.delete_one({'userid': userid})
+
+    return jsonify({'msg': '게시물 삭제 완료!'})
 
 
 
