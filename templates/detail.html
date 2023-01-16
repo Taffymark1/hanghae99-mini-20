@@ -39,42 +39,42 @@
         console.log('##', response)
           let rows = response['gallery'];
 
-            let name = rows[0]["userid"];
-            let comment = rows[0]["comment"];
-            let url = rows[0]["userurl"];
-            let num = rows[0]['num'];
+            let name = rows[7]["userid"];
+            let comment = rows[7]["comment"];
+            let url = rows[7]["userurl"];
+            let num = rows[7]['num'];
+
+            console.log(name)
+            console.log(comment)
+            console.log(url)
+            console.log(num)
 
             let temp_html = `
-            <form action="/fanclub" method="post">
-    <div class="pictures_left">
-        <div class="form-floating mb-3" id="floatingInput" name="username">
-            <img src=${url} class="card-img-top">
-        </div>
-
-        <div class="form-floating mb-3" id="floatingInput" name="username">
-
-            <h3>${name}</h3>
-
-        </div>
-
-        <div class="contents_right">
-                <textarea class="form-control" placeholder="Insert Image URL Here" id="floatingTextarea"
-                          name="comment"></textarea>
-            <label for="floatingTextarea" id="comment">${comment}</label>
-        </div>
-        <div>
-            <input type="url" id="url" name="userurl" value="url">
-            <label for="url" id="url_l">${url}</label>
-        </div>
-        <div class="postButton">
-            <button type="submit" class="btn btn-dark" onclick="add_comment()">수정하기</button>
-            <button type="button" class="btn btn-dark" id="btn_go" onclick="location.href='/list'">삭제하기</button>
-        </div>
-    </div>
-</form>
+            <form action="/fanclub" method="post" xmlns="http://www.w3.org/1999/html">
+                <div class="pictures_left">
+                    <div class="imgbox" id="floatingInput" name="username">
+                        <img src=${url} class="card-img-top">
+                    </div>
+                    <div class="namebox" id="floatingInput" name="username">
+                        <h3>${name}</h3>
+                    </div>
+                    <div class="contents_right">
+                            <textarea class="form-control" placeholder="Insert Image URL Here" id="floatingTextarea"
+                                      name="comment">${comment}</textarea>
+                        <label for="floatingTextarea" id="comment"></label>
+                    </div>
+                    <div>
+                        <label for="url" id="url_l">Image url</label>
+                        <input type="url" id="url" name="userurl" value="${url}">
+                    </div>
+                    <div class="postButton">
+                        <button type="submit" class="btn btn-dark" onclick="add_comment()">수정하기</button>
+                        <button type="button" class="btn btn-dark" id="btn_go" onclick="location.href='/list'">삭제하기</button>
+                    </div>
+                </div>
+            </form>
         `;
             $("#cards-box").append(temp_html);
-
     },
   });
 }
@@ -98,7 +98,9 @@ function like_post (num) {
 
 
 </div>
+    <div class="detail" id="cards-box">
 
+    </div>
 </div>
 </body>
 <script>
