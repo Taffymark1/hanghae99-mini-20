@@ -18,6 +18,11 @@
     100%{opacity: 1;}
 } */
 
+.pictures_left {
+    width: 1200px;
+    text-align: center;
+    margin: auto;
+}
 
 
 .loading{ /*배경사진*/
