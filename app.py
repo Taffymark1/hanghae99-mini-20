@@ -26,11 +26,11 @@ def login():
     userpw= request.form['pw']
 
     # db검색
-    userdbid = db.newjeans.find_one({'ID':userid})
-    userdbpw = db.newjeans.find_one({'PW':userpw})
+    userdbid = db.galleryhost.find_one({'ID':userid})
+    userdbpw = db.galleryhost.find_one({'PW':userpw})
 
     #None 막기 조건문
-    if userdbid is None:
+    if userdbid is None: 
         return render_template('login.html')
     elif userdbpw is None:
         return render_template('login.html')
@@ -69,7 +69,7 @@ def insert():
     userid = session['sid']
     userurl = request.form.get('userurl')
     comment = request.form.get('comment')
-    print(userid)
+
 #db 넣기
     if userurl is not None:
         db.gallery.insert_one({'userid':userid,'userurl':userurl,'comment':comment})
