@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>뉴진스 팬명록</title>
+
+</head>
+<body>
+<script>
+    //function showPost() {
+  $.ajax({
+    type: 'GET',
+    url: '/content',
+    data: {},
+    success: function (response) {
+        console.log('##', response)
+          let rows = response['newjeanslist'];
+          for (let i = 0; i < rows.length; i++) {
+            let name = rows[i]["name"];
+            let comment = rows[i]["comment"];
+            let temp_html = `<tr>
+                                <td >${name}</td>
+                                <td >${comment}</td>
+                            </tr>`;
+            $("#listpower").append(temp_html);
+      }
+    },
+  });
+// }
+</script>
+
+    <div id="listpower">
+
+    </div>
+<!--
+<form action="/list",method="get">
+
+
+</form>
+-->
+</body>
+</html>

@@ -1,0 +1,57 @@
+
+*{
+    font-family: 'Anton', sans-serif;
+}
+
+
+.albumImage {
+
+color: rgba(65, 105, 225, 0.5);
+transition:all 2s;
+
+
+}
+.albumImage:hover{
+width: 100%;
+height: 1000px;
+background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+url('https://w.namu.la/s/0f0f182dcbb699f9b1d7d2e026b8654dbc881bfacf21427fe20dca1c0557bd38ffeb0c108c070906773b0e3f16eaf85ca44ab8481804761662c5eaa6b4594653c32fe5a9ca91c1eed3540b22fca35769231470dbc442fdc1bef946d2b404f7d0773d97f968dd6b2e50abe7fb9749bde5');
+background-position: center 100%;
+color:white;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.infoBox{
+
+border-radius: 10%;
+background-color: royalblue;
+background-color: rgba(65, 105, 225, 0.5);
+}
+.infoBox >.info{
+margin: 20px 20px 20px 20px;
+}    
+.info >.input{
+border-radius: 10%;
+}
+.btn_sign{
+text-align: center;
+border-radius: 10%; 
+margin: 5px 5px 5px 5px;
+
+
+}
+.signin{
+text-align: center;             
+}
+.btn_wrap{
+
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+.btn_sign>button:hover{
+border:2px solid royalblue;
+}
