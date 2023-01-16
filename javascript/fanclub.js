@@ -19,12 +19,12 @@ function updateInput(){
 }
 function plus_comment(){
 
-        const {photo,comment,url} = updateInput();
+        const {name,comment,url} = updateInput();
 
       	$.ajax({
         type : 'post',
         url : '/fanclub',
-        data : {photo,comment,url}
+        data : {name,comment,url}
 	  });
 
 }

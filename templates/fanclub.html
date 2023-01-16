@@ -31,7 +31,7 @@
 
 <form action="/fanclub" method="post">
     <div class="myPost">
-        <div class="form-floating mb-3" id="floatingInput">
+        <div class="form-floating mb-3" id="floatingInput" name="username">
             {% if session['sid']  %}
             <h3>{{ session['sid']}}</h3>
             {% endif %}
@@ -43,7 +43,7 @@
             <label for="floatingTextarea" id="comment">comment</label>
         </div>
         <div>
-            <input type="url" id="url" name="url" value="url">
+            <input type="url" id="url" name="userurl" value="url">
             <label for="url" id="url_l">Image url</label>
         </div>
         <div class="postButton">
