@@ -14,18 +14,23 @@ function delete_comment(cardNumber){
 function updateInput(){
     const name = $('#floatingInput').val() 
     const comment = $('#floatingTextarea').val()
-    return {name,comment}
+    const url =$('#url').val()
+    return {name,comment,url}
 }
 function plus_comment(){
-        const {name,comment} = updateInput();
+
+        const {photo,comment,url} = updateInput();
 
       	$.ajax({
         type : 'post',
         url : '/fanclub',
-        data : {name,comment}
+        data : {photo,comment,url}
 	  });
 
 }
+
+
+
 
 
 // // const list = 

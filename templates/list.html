@@ -17,12 +17,12 @@
     data: {},
     success: function (response) {
         console.log('##', response)
-          let rows = response['newjeanslist'];
+          let rows = response['gallery'];
           for (let i = 0; i < rows.length; i++) {
-            let name = rows[i]["name"];
+            let photo = rows[i]["photo"];
             let comment = rows[i]["comment"];
             let temp_html = `<tr>
-                                <td >${name}</td>
+                                <td >${photo}</td>
                                 <td >${comment}</td>
                             </tr>`;
             $("#listpower").append(temp_html);
